@@ -1,0 +1,34 @@
+/* ACCESSIBILITY */
+
+.screen-reader-text {
+    clip: rect(1px, 1px, 1px, 1px);
+    height: 1px;
+    margin: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 1px;
+}
+
+/* ALIGNMENT */
+
+.center {
+    text-align: center;
+}
+
+/* RESPONSIVENESS */
+
+.visible-xs, .visible-sm, .visible-md, .visible-lg {
+    display: none !important;
+}
+
+@media (max-width: 767px) {
+    .visible-xs {
+        display: block !important;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .visible-sm {
+        display: block !important;
+    }
+}

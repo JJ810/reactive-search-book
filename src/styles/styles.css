@@ -1,0 +1,72 @@
+@import './utils.css';
+@import './components/App.css';
+@import './components/bypassBlocks.css';
+@import './components/footer.css';
+@import './components/header.css';
+@import './components/searchBar.css';
+
+a {
+    text-decoration: underline;
+    color: #284162;
+}
+
+body {
+    font-family: 'Nato Sans', sans-serif;
+    font-size: 1em;
+    line-height: 1.4375;
+    color: #333;
+    background-color: #fff;
+    margin: 0 0 0 0;
+}
+
+hr {
+    margin: 0px 0px 10px 0px;
+}
+
+.app-container {
+    margin: auto;
+    padding: 0 1em 0 1em;
+}
+
+.sub-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+/* LINKS */
+
+a.link-icon:hover {
+    color: #e1e4e7;
+}
+
+@media (min-width: 36em) {
+    .app-container {
+        width: 34.376em;
+    }
+}
+
+@media (min-width: 48em) {
+    .app-container {
+        width: 46.875em;
+    }
+}
+
+@media (min-width: 62em) {
+    .app-container {
+        width: 60.625em;
+    }
+}
+
+@media (min-width: 75em) {
+    .app-container {
+        width: 73.125em;
+    }
+}
+
+
+/* @media (min-width: 100em) {
+    .app-container {
+        width: 98.125em;
+    }
+} */

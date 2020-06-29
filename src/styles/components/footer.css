@@ -1,0 +1,88 @@
+footer {
+    width: 100%;
+    position: fixed;
+    z-index: 5;
+    bottom: 0;
+}
+
+footer nav {
+    padding-bottom: 2em;
+    padding-top: 2em;
+    position: fixed;
+    bottom: 0;
+}
+
+footer nav li {
+    display: inline-block;
+    margin-right: 0.7em;
+}
+
+footer nav li:nth-child(n+2)::before {
+    content: "\2022";
+    margin-right: 0.7em;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer .brand {
+    background: #f8f8f8;
+    line-height: 2em;
+}
+
+footer .brand img {
+    max-height: 2.25em;
+    height: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: auto;
+    float: right;
+}
+
+footer .top-of-page {
+    line-height: 5.625em;
+}
+
+footer .top-of-page a:hover {
+    text-decoration: none;
+}
+
+footer .top-of-page a svg {
+    margin-left: 1.25em;
+}
+
+@media (max-width: 479px) {
+    footer .brand img {
+        height: 1.625em;
+        max-width: 100%;
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    footer .brand img {
+        margin-top: 10px;
+    }
+
+    footer .top-of-page {
+        line-height: 3.75em;
+    }
+}
+
+@media (max-width: 991px) {
+    footer nav {
+        padding-bottom: 0;
+    }
+
+    footer nav li {
+        display: block;
+        margin-bottom: 0.2em;
+    }
+
+    footer nav li::before {
+        content: "\2022";
+        margin-right: 0.7em;
+    }
+}
+

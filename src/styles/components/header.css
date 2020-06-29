@@ -1,0 +1,59 @@
+header .brand {
+    padding-bottom: 0;
+    margin-bottom: 10px;
+    padding-top: 10px;
+}
+
+header .brand img {
+    padding-bottom: 0;
+    margin-bottom: .375em;
+    max-height: 2.25em;
+}
+
+.account-icons a {
+    margin-left: 0.5em;
+}
+
+.app-bar {
+    background: #38414d;
+    color: #fff;
+    padding: 0.5rem 0 0.5rem 0;
+}
+
+.app-bar a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.app-bar .app-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.app-name a {
+    font-size: 1.75em;
+}
+
+.app-name a:hover {
+    text-decoration: underline;
+}
+
+.lang-toggle {
+    text-align: right;
+    padding-top: 10px;
+}
+
+.lang-toggle li {
+    list-style: none;
+}
+
+.lang-toggle ul {
+    margin-bottom: 0px;
+}
+
+@media (max-width: 991px) {
+    header .brand img {
+        max-height: 1.5em;
+    }
+}

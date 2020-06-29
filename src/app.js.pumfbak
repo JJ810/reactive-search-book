@@ -1,0 +1,255 @@
+import React, { Component } from "react";
+import {
+    ReactiveBase,
+    DataSearch,
+    MultiDataList,
+    DateRange,
+    SelectedFilters,
+    ReactiveList
+} from "@appbaseio/reactivesearch";
+import "./App.css";
+
+class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            isClicked: false,
+            message: "🔬Show Filters"
+        };
+    }
+
+    // handleClick() {
+    //     this.setState({
+    //         isClicked: !this.state.isClicked,
+    //         message: this.state.isClicked ? "🔬 Show Filters" : "🎬 Show Movies"
+    //     });
+    // }
+    render() {
+        return (
+
+            <div className="main-container">
+                <ReactiveBase
+                    app="pumf"
+                    url="http://localhost:9200/"
+                    theme={{
+                        typography: {
+                            fontFamily:
+                                '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Noto Sans", "Ubuntu", "Droid Sans", "Helvetica Neue", sans-serif',
+                            fontSize: "16px"
+                        },
+                        colors: {
+                            //textColor: "#fff",
+                            textColor: "#000000",
+                            backgroundColor: "#212121",
+                            primaryTextColor: "#fff",
+                            primaryColor: "#2196F3",
+                            titleColor: "#fff",
+                            alertColor: "#d9534f",
+                            borderColor: "#666"
+                        }
+                    }}
+                >
+                    <div id="logos" className="logos-container">
+                        <div id="left-image"><img src={require('./image1.png')} alt="canada logo1" /></div>
+                        <div id="right-image"><img src={require('./image2.png')} alt="canada logo2" /></div>
+                    </div>
+                    <br></br>
+                    <hr className="blue" />
+                    <div className="navbar">
+                        <div className="search-container">
+                            <DataSearch
+                                componentId="mainSearch"
+                                dataField={["codeBook.stdyDscr.stdyInfo.abstract"]}
+                                //dataField={["res.codeBook.docDscr.citation.titlStmt.titl", "res.codeBook.stdyDscr.stdyInfo.subject.keyword", "codeBook.stdyDscr.stdyInfo.abstract","res.codeBook.stdyDscr.citation.titlStmt.altTitl"]}
+                                // categoryField="title"
+                                //dataField={"res.codeBook.docDscr.citation.titlStmt.titl"}
+                                nestedField={"res.codeBook.dataDscr.var.labl"}
+                                className="search-bar"
+                                queryFormat="or"
+                                placeholder="Search for microdata files..."
+                                iconPosition="left"
+                                autosuggest={true}
+                                filterLabel="search"
+                            //title="Search here! "
+                            />
+                        </div>
+                    </div>
+                    <div className="sub-container">
+                        <div
+                            className={
+                                this.state.isClicked ? "left-bar-optional" : "left-bar"
+                            }
+                        >
+                            <div className="filter-heading center">
+                                <b>
+                                    {" "}
+                                    <i className="fa fa-pied-piper-alt" /> Refiners{" "}
+                                </b>
+                            </div>
+
+                            <MultiDataList
+                                componentId="Refiners-list"
+                                
+                                className="Refiners-filter"
+                                size={100}
+                                sortBy="asc"
+                                queryFormat="or"
+                                //selectAllLabel="All Languages"
+                                showCheckbox={true}
+                                showSearch={false}
+                                //placeholder="Search for a language"
+                                react={{
+                                    and: [
+                                        "mainSearch",
+                                        "results",
+                                        "date-filter",
+                                        "language-list",
+
+                                    ]
+                                }}
+                                data={[
+                                    {
+                                        label: "Title",
+                                        value: "titl"
+                                    },
+                                    {
+                                        label: "Keyword",
+                                        value: "keyword"
+                                    },
+                                    {
+                                        label: "abstract",
+                                        value: "abstract"
+                                    },
+                                    {
+                                        label: "altTitl",
+                                        value: "altTitl"
+                                    }
+                                ]}
+                                showFilter={true}
+                                filterLabel="Refiners"
+                                URLParams={false}
+                                innerClass={{
+                                    label: "list-item",
+                                    input: "list-input"
+                                }}
+                            />
+
+                            <br></br>
+
+                            <hr className="blue" />
+                            <div className="filter-heading center">
+                                <b>
+                                    {" "}
+                                    <i className="fa fa-language" /> Languages{" "}
+                                </b>
+                            </div>
+                            <MultiDataList
+                                componentId="language-list"
+                                dataField="original_language.raw"
+                                className="language-filter"
+                                size={100}
+                                sortBy="asc"
+                                queryFormat="or"
+                                selectAllLabel="All Languages"
+                                showCheckbox={true}
+                                showSearch={false}
+                                //placeholder="Search for a language"
+                                react={{
+                                    and: [
+                                        "mainSearch",
+                                        "results",
+                                        "date-filter",
+                                        "Refiners-list",
+
+                                    ]
+                                }}
+                                data={[
+                                    {
+                                        label: "English",
+                                        value: "English"
+                                    },
+                                    {
+                                        label: "French",
+                                        value: "French"
+                                    }
+                                ]}
+                                showFilter={true}
+                                filterLabel="Language"
+                                URLParams={false}
+                                innerClass={{
+                                    label: "list-item",
+                                    input: "list-input"
+                                }}
+                            />
+                            <hr className="blue" />
+
+                            <div className="filter-heading center">
+                                <b>
+                                    {" "}
+                                    <i className="fa fa-calendar" /> Survey Date{" "}
+                                </b>
+                            </div>
+                            <DateRange
+                                componentId="date-filter"
+                                dataField="release_date"
+                                className="datePicker"
+                            />
+                        </div>
+                        <div
+                            className={
+                                this.state.isClicked
+                                    ? "result-container-optional"
+                                    : "result-container"
+                            }
+                        >
+                            <SelectedFilters
+                                showClearAll={true}
+                                clearAllLabel="Clear filters"
+                            />
+                            <ReactiveList
+                                componentId="results"
+                                dataField=" "
+                            
+                                //includeFields={["res.codeBook.docDscr.citation.titlStmt.titl","res.codeBook.stdyDscr.stdyInfo.subject.keyword","res.codeBook.stdyDscr.citation.titlStmt.altTitl"]}
+                                pagination={true}
+                                paginationAt="bottom"
+                                pages={5}
+                                size={12}
+                                Loader="Loading..."
+                                showResultStats={true}
+                                noResults="No results were found..."
+
+                                renderItem={(res) =>
+                                    
+                                    <div>
+                                        <div><b>TITLE: </b>:{res.codeBook.docDscr.citation.titlStmt.titl }</div>
+                                        <div><b>KEYWORDS: </b>{res.codeBook.stdyDscr.stdyInfo.subject.keyword }</div>
+                                        <div><b>ABBREVIATION: </b>{res.codeBook.stdyDscr.citation.titlStmt.altTitl }</div>
+                                        <div><b>ABSTRACT: </b>{res.codeBook.stdyDscr.stdyInfo.abstract.__cdata }</div>
+                                        
+                                        {/* <div><b>var-label</b>: {res.codeBook.dataDscr.var.labl}</div>  */}
+                                        
+                                         <br/> <hr></hr>
+ 
+                                    </div>
+                                }
+
+
+                                react={{
+                                    "and": ["mainSearch", "date-filter", "Refiners-list","language-list"]
+                                }}
+                            />
+
+
+                        </div>
+
+                        
+                    </div>
+                </ReactiveBase>
+            </div>
+        );
+    }
+}
+
+export default App;

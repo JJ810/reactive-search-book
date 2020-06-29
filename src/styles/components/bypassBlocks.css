@@ -1,0 +1,21 @@
+.bypass-blocks {
+    list-style-type: none;
+    margin-bottom: 0;
+}
+
+.bypass-blocks li {
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 10px;
+    width: 100%;
+    z-index: 3;
+}
+
+.bypass-blocks li a {
+    background: #38414d;
+    color: #fff;
+    font-weight: 700;
+    padding: 5px;
+    z-index: 501;
+}
